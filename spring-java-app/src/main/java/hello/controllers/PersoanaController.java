@@ -41,7 +41,7 @@ public class PersoanaController {
     return new ResponseEntity<String>(null, new HttpHeaders(), HttpStatus.NOT_FOUND);
   }
 
-  @RequestMapping(value="/persoana/{id}", method = RequestMethod.DEL)
+  @RequestMapping(value="/persoana/{id}", method = RequestMethod.DELETE)
   public ResponseEntity remove(@PathVariable("id") int id) {
     for(Persoana p : this.persoane) {
       if(p.getId() == id) {
