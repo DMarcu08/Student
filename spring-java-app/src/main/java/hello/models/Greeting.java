@@ -1,4 +1,4 @@
-package hello;
+package hello.models;
 
 public class Greeting {
 
@@ -17,4 +17,17 @@ public class Greeting {
     public String getContent() {
         return content;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Greeting)) return false;
+
+        Greeting greeting = (Greeting) o;
+
+        if (getId() != greeting.getId()) return false;
+        return getContent().equals(greeting.getContent());
+
+    }
+
 }

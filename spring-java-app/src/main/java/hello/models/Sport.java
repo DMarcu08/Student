@@ -32,4 +32,17 @@ public class Sport {
 	  this.name = name;
   }
   
+  	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Sport)) return false;
+
+        Sport sport = (Sport) o;
+
+        if (getId() != sport.getId()) return false;
+        return getName().equals(sport.getName());
+
+    }
+
+  
 }

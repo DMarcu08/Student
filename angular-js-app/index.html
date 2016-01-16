@@ -6,11 +6,250 @@
   <link rel="stylesheet" media="all" href="css/custom.css">
 </head>
 <body>
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">AWJ Base Project</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>			
+			<li><a href="#">Persoana</a></li>
+			
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <hr/>
 
   <div class="container">
     <div ng-controller="HomeController">
       <h1>{{ helloWorld }}</h1>
+      <p>Writing this live into the browser...</p>
     </div>
+  </div>
+
+  <hr/>
+
+  <!-- /Persoana -->
+  <div class="container" ng-controller="PersoanaController">
+    <h1>Persoane</h1>
+    <h2>List all persons</h2>
+    <table class="table table-bordered">
+      <tr>
+        <th>Id</th>
+        <th>Nume</th>
+		 <th style="width:210px;">Options</th>
+      </tr>
+      <tr ng-repeat="p in persoane track by p.id">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+		<td>
+          <a href="">
+            <span class="label label-success" ng-click="getPerson(p.id)">
+              Open
+              <span class="glyphicon glyphicon-folder-open"></span>
+            </span>
+          </a>
+          <a href="" ng-click="setUpdatePerson(p)">
+            <button  class="btn btn-info btn-xs">
+              Edit
+                <span class="glyphicon glyphicon-edit"></span>
+            </button>
+          </a>
+          <a href="" ng-click="deletePersoana(p.id)">
+            <span class="label label-danger">
+              Remove
+              <span class="glyphicon glyphicon-remove"></span>
+            </span>
+          </a>
+        </td>
+      </tr>
+    </table>
+
+    <div class="row" ng-show="edit">
+      <div class="col-md-3">
+        <h2>Edit a person</h2>
+        <form action="" method="">
+          <div class="form-group">
+            <label for="attribute1">Id</label>
+            <input type="text" ng-model="editPerson.id" class="form-control" id="Id" placeholder="Id">
+          </div>
+          <div class="form-group">
+            <label for="attribute2">Nume</label>
+            <input type="text" ng-model="editPerson.name" class="form-control" id="Name" placeholder="Name">
+          </div>
+		   
+        </form>
+		<button ng-click="updatePerson()" class="btn btn-info">Save</button>
+      </div>
+
+
+      <div class="col-md-3 col-md-offset-6">
+        <h2>Add a person</h2>
+        <form action="" method="">
+          <div class="form-group">
+            <label for="Id">Id</label>
+            <input type="text" class="form-control" id="attribute1"  ng-model="addPerson.id" placeholder="Id">
+          </div>
+          <div class="form-group">
+            <label for="name">Nume</label>
+            <input type="text" class="form-control" id="attribute2" ng-model="addPerson.name" placeholder="Name">
+          </div>
+		
+        </form>
+		 <button type="submit" ng-click="savePerson(addPerson)" class="btn btn-success">Add</button>
+      </div>
+    </div>
+
+    <div class="row" ng-show="openP">
+      <div class="col-md-12">
+        <h2>Show a Person</h2>
+      </div>
+      <div class="col-md-2">
+        <img src="http://api.ning.com/files/HQxAaulTxRbYRAwhuHxxhySe8NmiywxWutqShpe5os1yJnHk3vEUsirPYhvWHTuIMMiyU49wqJl9CmGywwamQhJgq1ZvGTB*/7ab1C2BDE8B1a4Fd__profile.jpg" class="img-thumbnail"/>
+      </div>
+      <div class="col-md-10">
+        <h1>{{openPerson.name}}</h1>
+        
+		
+        <!-- <h3>Sub resource</h3>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Attribute 5</th>
+            <th>Attribute 6</th>
+          </tr>
+          <tr>
+            <td>Lorem ipsum</td>
+            <td>Lorem</td>
+          </tr>
+          <tr>
+            <td>Lorem ipsum dolor</td>
+            <td>Sir</td>
+          </tr>
+        </table> -->
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+  
+  <div class="container" ng-controller="SportController">
+    <h1>Sporturi</h1>
+    <h2>List all sports</h2>
+    <table class="table table-bordered">
+      <tr>
+        <th>Id</th>
+        <th>Nume</th>
+		 <th style="width:210px;">Options</th>
+      </tr>
+      <tr ng-repeat="p in sports track by p.id">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+		<td>
+          <a href="">
+            <span class="label label-success" ng-click="getSport(p.id)">
+              Open
+              <span class="glyphicon glyphicon-folder-open"></span>
+            </span>
+          </a>
+          <a href="" ng-click="setUpdateSport(p)">
+            <button  class="btn btn-info btn-xs">
+              Edit
+                <span class="glyphicon glyphicon-edit"></span>
+            </button>
+          </a>
+          <a href="" ng-click="deleteSport(p.id)">
+            <span class="label label-danger">
+              Remove
+              <span class="glyphicon glyphicon-remove"></span>
+            </span>
+          </a>
+        </td>
+      </tr>
+    </table>
+
+    <div class="row" ng-show="edit">
+      <div class="col-md-3">
+        <h2>Edit a sport</h2>
+        <form action="" method="">
+          <div class="form-group">
+            <label for="attribute1">Id</label>
+            <input type="text" ng-model="editSport.id" class="form-control" id="Id" placeholder="Id">
+          </div>
+          <div class="form-group">
+            <label for="attribute2">Nume</label>
+            <input type="text" ng-model="editSport.name" class="form-control" id="Name" placeholder="Name">
+          </div>
+       </form>
+		<button ng-click="updateSport()" class="btn btn-info">Save</button>
+      </div>
+
+      <div class="col-md-3 col-md-offset-6">
+        <h2>Add a sport</h2>
+        <form action="" method="">
+          <div class="form-group">
+            <label for="Id">Id</label>
+            <input type="text" class="form-control" id="attribute1"  ng-model="addSport.id" placeholder="Id">
+          </div>
+          <div class="form-group">
+            <label for="name">Nume</label>
+            <input type="text" class="form-control" id="attribute2" ng-model="addSport.name" placeholder="Name">
+          </div>
+		
+        </form>
+		 <button type="submit" ng-click="saveSport(addSport)" class="btn btn-success">Add</button>
+      </div>
+    </div>
+
+    <div class="row" ng-show="openP">
+      <div class="col-md-12">
+        <h2>Show a Sport</h2>
+      </div>
+      <div class="col-md-2">
+        <img src="http://api.ning.com/files/HQxAaulTxRbYRAwhuHxxhySe8NmiywxWutqShpe5os1yJnHk3vEUsirPYhvWHTuIMMiyU49wqJl9CmGywwamQhJgq1ZvGTB*/7ab1C2BDE8B1a4Fd__profile.jpg" class="img-thumbnail"/>
+      </div>
+      <div class="col-md-10">
+        <h1>{{openSport.name}}</h1>
+        
+		
+        <!-- <h3>Sub resource</h3>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Attribute 5</th>
+            <th>Attribute 6</th>
+          </tr>
+          <tr>
+            <td>Lorem ipsum</td>
+            <td>Lorem</td>
+          </tr>
+          <tr>
+            <td>Lorem ipsum dolor</td>
+            <td>Sir</td>
+          </tr>
+        </table> -->
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+  
+  
+  <div class="container">
+    <footer class="footer">
+      <p class="text-muted pull-left">AWJ Base Project &copy; 2015-2016</p>
+      <p class="text-muted pull-right">Marcu Dorin, 334AA</p>
+    </footer>
   </div>
 
   <script src="js/jquery-1.11.3.min.js"></script>
